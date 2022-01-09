@@ -99,8 +99,6 @@ resource "azurerm_signalr_service" "signalr_service" {
     allowed_origins = [local.api_base_url]
   }
 
-  connectivity_logs_enabled = "True"
-  messaging_logs_enabled    = "True"
   service_mode              = "Serverless"
 }
 
