@@ -144,7 +144,7 @@ resource "azurerm_function_app" "function_api" {
   os_type                    = local.function_os_type
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.signalr_api_managed_identity.id]
+    identity_ids = [azurerm_user_assigned_identity.signalr_managed_identity.id]
   }
 
  site_config {
