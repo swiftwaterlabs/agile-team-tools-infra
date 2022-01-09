@@ -86,7 +86,7 @@ resource "azurerm_storage_account" "static_site" {
 
 # SignalR
 resource "azurerm_signalr_service" "signalr_service" {
-  name                     = "${var.service_name}${var.environment}"
+  name                     = "${var.service_name}-${var.environment}"
   resource_group_name      = azurerm_resource_group.service_resource_group.name
   location                 = azurerm_resource_group.service_resource_group.location
 
@@ -96,7 +96,7 @@ resource "azurerm_signalr_service" "signalr_service" {
   }
 
   cors {
-    allowed_origins = [local.api_base_url]
+    allowed_origins = ["https://${local.api_base_url}",trimsuffix(azurerm_storage_account.static_site.primary_web_endpoint,"/")]
   }
 
   service_mode              = "Serverless"
