@@ -153,7 +153,7 @@ resource "azurerm_function_app" "function_api" {
     min_tls_version = "1.2"
 
     cors {
-      allowed_origins     = [azurerm_storage_account.static_site.primary_web_endpoint]
+      allowed_origins     = [trimsuffix(azurerm_storage_account.static_site.primary_web_endpoint,"/")]
       support_credentials = true
     }
   }
